@@ -13,8 +13,15 @@ datasource db {
 }
 
 model Character {
-  id Int @default(autoincrement()) @id
+  id   Int    @id @default(autoincrement())
   name String @unique
-  x Float
-  y Float
+  x    Float
+  y    Float
+}
+
+model Game {
+  id Int @id@default(autoincrement())
+  username String 
+  started_at DateTime @default(now())
+  found Int @default(0)
 }

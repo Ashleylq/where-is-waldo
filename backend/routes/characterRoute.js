@@ -6,6 +6,7 @@ const router = Router();
 router.post("/:name", async (req, res) => {
     const x = parseFloat(req.body.x);
     const y = parseFloat(req.body.y)
+    const id = parseInt(req.body.id)
     const {name} = req.params;
     try {
         const character = await prisma.character.findUniqueOrThrow({
@@ -21,7 +22,13 @@ router.post("/:name", async (req, res) => {
         const yUpperLimit = character.y + radius;
         const yLowerLimit = character.y - radius;
         if(x < xUpperLimit && x > xLowerLimit && y < yUpperLimit && y > yLowerLimit){
-            res.json({correct : true});
+            const game = await prisma.game.update({
+                where : {id : id},
+                data : {found : {
+                    increment : 1
+                }}
+            })
+            res.json({correct : true, foundAll : (game.found == 4)});
         }
         else {
             res.json({correct : false});

@@ -1,5 +1,6 @@
 import express from "express";
 import characterRouter from "./routes/characterRoute.js";
+import gameRouter from "./routes/gameRoute.js";
 import cors from "cors";
 
 const app = express();
@@ -10,6 +11,7 @@ app.use(cors({
 app.use(express.json())
 
 app.use("/character", characterRouter)
+app.use("/game", gameRouter)
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, (err) => {
