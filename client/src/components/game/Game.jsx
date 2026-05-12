@@ -41,6 +41,14 @@ function Game(){
         <>
         <div className={styles.container}>
             <h1 className={styles.title}>Where's Waldo</h1>
+            <div className={styles.charContainer}>
+                {characters.map((char) => (
+                    <div>
+                        <img src={char.image}/>
+                        <p>{char.name}</p>
+                    </div>
+                ))}
+            </div>
             {coordinates && <div style={{left : coordinates.x, top : coordinates.y}} className={styles.selected}></div>}
             <DropDown coordinates={coordinates} characters={characters} setCharacters={setCharacters} setCoordinates={setCoordinates} getCoordinates={getCoordinates}/>
             <img ref={imageRef} className={styles.image} onClick={e => setCoordinates({x : e.clientX, y : e.clientY})} src="/beach.jpeg"/>
