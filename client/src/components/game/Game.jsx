@@ -1,4 +1,4 @@
-import { useRef, useState, useContext } from "react";
+import { useRef, useState, useContext, useEffect } from "react";
 import styles from "./Game.module.css";
 import Waldo from "../../assets/waldo.jpeg";
 import Wenda from "../../assets/wenda.webp";
@@ -7,6 +7,7 @@ import Odlaw from "../../assets/odlaw.webp";
 import GameContext from "../../GameContext.jsx";
 
 function Game(){
+    const { time, setTime } = useContext(GameContext);
     const imageRef = useRef(null);
     const [coordinates, setCoordinates] = useState(null);
     const [characters, setCharacters] = useState([
@@ -32,6 +33,10 @@ function Game(){
             found : false
         }
     ])
+    useEffect(() => {
+        const timer = setInterval(() => setTime(prevTime => prevTime + 1), 1000);
+        return () => clearInterval(timer);
+    })
     function getCoordinates(){
         const bounds = imageRef.current.getBoundingClientRect();
         const x = (coordinates.x - bounds.left) / bounds.width;
@@ -48,6 +53,9 @@ function Game(){
                         {char.found ? <p><s>{char.name}</s></p> : <p>{char.name}</p> }
                     </div>
                 ))}
+            </div>
+            <div className={styles.extras}>
+                <p className={styles.timer}>Time Taken: {time}s</p>
             </div>
             {coordinates && <div style={{left : coordinates.x, top : coordinates.y}} className={styles.selected}></div>}
             <DropDown coordinates={coordinates} characters={characters} setCharacters={setCharacters} setCoordinates={setCoordinates} getCoordinates={getCoordinates}/>

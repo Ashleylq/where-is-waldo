@@ -7,9 +7,10 @@ import GameContext from "./GameContext.jsx";
 function App(){
     // possible status : "not started", "started", "ended"
     const [status, setStatus] = useState("not started")
-    const [id, setId] = useState(null)
+    const [id, setId] = useState(null);
+    const [time, setTime] = useState(0);
     return (
-        <GameContext.Provider value={{status, id, setStatus, setId}}>
+        <GameContext.Provider value={{status, id, time, setStatus, setId, setTime}}>
             {status == "not started" && <Start/>}
             {status == "started" && <Game/>}
             {status == "ended" && <End/>}

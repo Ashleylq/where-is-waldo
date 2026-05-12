@@ -7,7 +7,6 @@ function Start(){
     const usernameRef = useRef(null);
     const startGame = async (e) => {
         e.preventDefault();
-        alert("hi")
         const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/game/start`, {
             method : "POST",
             headers : {
@@ -16,7 +15,6 @@ function Start(){
             body : JSON.stringify({username : usernameRef.current.value})
         })
         const result = await res.json();
-        alert(JSON.stringify(result))
         setId(result.id);
         setStatus("started")
     }
