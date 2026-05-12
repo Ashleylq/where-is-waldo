@@ -1,6 +1,41 @@
+.title {
+    text-align : center;
+}
+
 .image {
     display : block;
-    height : 75vh;
+    height : 70vh;
     width : auto;
     margin : auto;
+    border-color : var(--slate);
+    border-width: 2px;
+    border-style: solid;
+}
+
+.container {
+    position : relative;
+}
+
+.dropDown {
+    position : absolute;
+    display : flex;
+    flex-direction: column;
+    button {
+        background-color : var(--powder);
+        font-size : 0.8rem;
+        border-radius : 0;
+        border-color: var(--slate);
+        padding : 3px;
+    }
+}
+
+.selected {
+    position : absolute;
+    background-color: transparent;
+    border-style: solid;
+    border-radius: 100%;
+    border-width: 3px;
+    border-color: var(--slate);
+    height : 40px;
+    width : 40px;
 }

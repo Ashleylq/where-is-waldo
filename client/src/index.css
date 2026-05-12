@@ -1,0 +1,18 @@
+:root {
+    --powder : #ffa69d;
+    --aqua : #b8f2e6;
+    --lightblue : #aed9e0;
+    --cream : #faf3dd;
+    --slate : #5e6472
+}
+
+* {
+    font-family : Arial, Helvetica, sans-serif;
+    color : #0B132B
+}
+
+body {
+    margin : 0;
+    padding : 0;
+    background-color : var(--lightblue)
+}
