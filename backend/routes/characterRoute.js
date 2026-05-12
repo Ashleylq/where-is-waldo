@@ -3,13 +3,13 @@ import { prisma } from "../lib/prisma.js"
 
 const router = Router();
 
-router.post("/:id", async (req, res) => {
+router.post("/:name", async (req, res) => {
     const x = parseFloat(req.body.x);
     const y = parseFloat(req.body.y)
-    const {id} = req.params;
+    const {name} = req.params;
     try {
         const character = await prisma.character.findUniqueOrThrow({
-            where : {id : parseInt(id)},
+            where : {name : name},
             select: {
                 x : true,
                 y : true

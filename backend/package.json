@@ -10,5 +10,8 @@
   "devDependencies": {
     "prisma": "^7.8.0"
   },
-  "type": "module"
+  "type": "module",
+  "scripts": {
+    "seed" : "node prisma/seed.js"
+  }
 }

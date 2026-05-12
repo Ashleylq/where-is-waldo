@@ -61,9 +61,9 @@ function DropDown({coordinates, characters, setCharacters, setCoordinates, getCo
     if(!coordinates){
         return null;
     }
-    async function checkCoordinates(id){
+    async function checkCoordinates(name){
         const relativeCoords = getCoordinates();
-        const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/character/${id}`, {
+        const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/character/${name}`, {
             method : "POST",
             headers : {
                 "Content-Type" : "application/json"
@@ -72,7 +72,7 @@ function DropDown({coordinates, characters, setCharacters, setCoordinates, getCo
         })
         const result = await res.json();
         if(result.correct){
-            const copy = characters.map(char => char.id == id ? {...char, found : true} : {...char})
+            const copy = characters.map(char => char.name == name ? {...char, found : true} : {...char})
             setCharacters(copy);
         }
         setCoordinates(null);
@@ -81,7 +81,7 @@ function DropDown({coordinates, characters, setCharacters, setCoordinates, getCo
         <div className={styles.dropDown} style={{left : coordinates.x - 2 , top : coordinates.y + 60}}>
             {characters.map((char) => {
                 if(!char.found){
-                    return <button key={char.id} onClick={async () => await checkCoordinates(char.id)}>{char.name}</button>
+                    return <button key={char.id} onClick={async () => await checkCoordinates(char.name)}>{char.name}</button>
                 }
             })}
         </div>
