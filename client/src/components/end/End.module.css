@@ -1,0 +1,12 @@
+.title {
+    text-align : center;
+}
+.playAgain {
+    display : block;
+    margin : 15px auto;
+    font-size : 1rem;
+    font-weight : bold;
+    background-color: var(--aqua);
+    padding : 10px;
+    border-radius : 5px;
+}

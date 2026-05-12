@@ -13,7 +13,7 @@ router.post("/start", async (req, res) => {
     res.json({id : game.id});
 })
 
-router.post("/end/:id", async (req, res) => {
+router.patch("/end/:id", async (req, res) => {
     const id = parseInt(req.params.id);
     try {
         const game = await prisma.game.findUniqueOrThrow({
