@@ -7,7 +7,7 @@ import cors from "cors";
 const app = express();
 
 app.use(cors({
-    origin : true
+    origin : "https://where-is-waldo-riug.onrender.com"
 }))
 app.use(express.json())
 
