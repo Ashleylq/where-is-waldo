@@ -37,11 +37,11 @@ function Game(){
         const timer = setInterval(() => setTime(prevTime => prevTime + 1), 1000);
         return () => clearInterval(timer);
     })
-    function getCoordinates(){
+    function getCoordinates(e){
         const bounds = imageRef.current.getBoundingClientRect();
-        const x = (coordinates.x - bounds.left) / bounds.width;
-        const y = (coordinates.y - bounds.top) / bounds.height;
-        return {x : x, y : y}
+        const x = (e.clientX - bounds.left) / bounds.width;
+        const y = (e.clientY - bounds.top) / bounds.height;
+        setCoordinates({x : x, y : y})
     }
     return (
         <div className={styles.container}>
@@ -57,9 +57,11 @@ function Game(){
             <div className={styles.extras}>
                 <p className={styles.timer}>Time Taken: {time}s</p>
             </div>
-            {coordinates && <div style={{left : coordinates.x, top : coordinates.y}} className={styles.selected}></div>}
-            <DropDown coordinates={coordinates} characters={characters} setCharacters={setCharacters} setCoordinates={setCoordinates} getCoordinates={getCoordinates}/>
-            <img ref={imageRef} className={styles.image} onClick={e => setCoordinates({x : e.clientX, y : e.clientY})} src="/beach.jpeg"/>
+            <div className={styles.imageContainer}>
+                {coordinates && <div style={{left : `${coordinates.x * 100 - 2}%`, top : `${coordinates.y * 100 - 3}%`}} className={styles.selected}></div>}
+                <DropDown coordinates={coordinates} characters={characters} setCharacters={setCharacters} setCoordinates={setCoordinates} getCoordinates={getCoordinates}/>
+                <img ref={imageRef} className={styles.image} onClick={e => getCoordinates(e)} src="/beach.jpeg"/>
+            </div>
         </div>
     )
 }
@@ -70,7 +72,7 @@ function DropDown({coordinates, characters, setCharacters, setCoordinates, getCo
         return null;
     }
     async function checkCoordinates(name){
-        const data = getCoordinates();
+        const data = {...coordinates};
         data.id = id;
         const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/character/${name}`, {
             method : "POST",
@@ -99,7 +101,7 @@ function DropDown({coordinates, characters, setCharacters, setCoordinates, getCo
         }
     }
     return (
-        <div className={styles.dropDown} style={{left : coordinates.x - 2 , top : coordinates.y + 60}}>
+        <div className={styles.dropDown} style={{left : `${coordinates.x * 100 - 2}%` , top : `${coordinates.y * 100 + 10}%`}}>
             {characters.map((char) => {
                 if(!char.found){
                     return <button key={char.id} onClick={async () => await checkCoordinates(char.name)}>{char.name}</button>

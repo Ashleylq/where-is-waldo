@@ -2,18 +2,21 @@
     text-align : center;
 }
 
+.imageContainer {
+    position: relative;
+    height : 70vh;
+    width : max-content;
+    margin : auto;
+}
+
 .image {
     display : block;
-    height : 70vh;
-    width : auto;
     margin : auto;
+    height : 100%;
+    width : auto;
     border-color : var(--slate);
     border-width: 2px;
     border-style: solid;
-}
-
-.container {
-    position : relative;
 }
 
 .dropDown {
