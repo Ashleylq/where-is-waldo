@@ -5,6 +5,7 @@ import Wenda from "../../assets/wenda.webp";
 import Wizard from "../../assets/wizard.webp";
 import Odlaw from "../../assets/odlaw.webp";
 import GameContext from "../../GameContext.jsx";
+import Leaderboard from "../leaderboard/Leaderboard.jsx";
 
 function Game(){
     const { time, setTime } = useContext(GameContext);
@@ -56,6 +57,7 @@ function Game(){
             </div>
             <div className={styles.extras}>
                 <p className={styles.timer}>Time Taken: {time}s</p>
+                <Leaderboard/>
             </div>
             <div className={styles.imageContainer}>
                 {coordinates && <div style={{left : `${coordinates.x * 100 - 2}%`, top : `${coordinates.y * 100 - 3}%`}} className={styles.selected}></div>}

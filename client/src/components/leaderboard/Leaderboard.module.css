@@ -1,0 +1,36 @@
+.button {
+    margin : 15px auto;
+    display : block;
+    background-color: var(--powder);
+    font-size: 1rem;
+    font-weight: bold;
+    padding : 10px;
+    border-radius: 5px;
+    border-style: none;
+}
+
+.dialog {
+    width : max-content;
+    padding : 30px;
+    border-radius : 10px;
+    border: none;
+    background-color: var(--cream);
+    h2, div {
+        height : 5vh;
+    }
+    h2 {
+        text-align: center;
+        margin : 5px;
+    }
+    table {
+        max-height: 60vh;
+        overflow: scroll;
+        margin : 15px auto;
+        border-collapse: separate;
+        border-spacing : 20px 15px;
+        td{
+            text-align: center;
+        }
+    }
+}
+

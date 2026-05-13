@@ -1,6 +1,7 @@
 import { useContext, useRef } from "react";
 import styles from "./Start.module.css";
 import GameContext from "../../GameContext.jsx"
+import Leaderboard from "../leaderboard/Leaderboard.jsx";
 
 function Start(){
     const {setStatus, setId} = useContext(GameContext)
@@ -26,6 +27,7 @@ function Start(){
                 <input name="username" id="username" ref={usernameRef} required/>
                 <button type="submit">Play</button>
             </form>
+            <Leaderboard/>
         </>
     )
 }
