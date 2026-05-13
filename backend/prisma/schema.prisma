@@ -25,3 +25,9 @@ model Game {
   started_at DateTime @default(now())
   found Int @default(0)
 }
+
+model Score {
+  id Int @id
+  username String
+  time Int
+}

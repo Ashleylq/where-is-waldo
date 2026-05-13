@@ -23,8 +23,16 @@ router.patch("/end/:id", async (req, res) => {
             res.status(401).json({err : "All characters not found"});
         }
         else {
+            const timeTaken = Date.now() - new Date(game.started_at);
             await prisma.game.delete({
                 where : {id : id}
+            })
+            await prisma.score.create({
+                data : {
+                    time : timeTaken,
+                    id : game.id,
+                    username: game.username
+                }
             })
             res.json({success : true})
         }

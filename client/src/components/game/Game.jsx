@@ -71,7 +71,7 @@ function DropDown({coordinates, characters, setCharacters, setCoordinates, getCo
     }
     async function checkCoordinates(name){
         const data = getCoordinates();
-        data.id = id
+        data.id = id;
         const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/character/${name}`, {
             method : "POST",
             headers : {
@@ -81,12 +81,11 @@ function DropDown({coordinates, characters, setCharacters, setCoordinates, getCo
         })
         const result = await res.json();
         if(result.correct){
-            if(result.foundAll){
-                await endGame(id);
-                return;
-            }
             const copy = characters.map(char => char.name == name ? {...char, found : true} : {...char})
             setCharacters(copy);
+            if(result.foundAll){
+                await endGame(id);
+            }
         }
         setCoordinates(null);
     }
@@ -94,7 +93,7 @@ function DropDown({coordinates, characters, setCharacters, setCoordinates, getCo
         const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/game/end/${id}`, {
             method : "PATCH"
         })
-        const result = await res.json()
+        const result = await res.json();
         if(result.success){
             setStatus("ended");
         }
